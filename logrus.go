@@ -95,17 +95,17 @@ const (
 // it'll accept a stdlib logger and a logrus logger. There's no standard
 // interface, this is the closest we get, unfortunately.
 type StdLogger interface {
-	Print(...interface{})
-	Printf(string, ...interface{})
-	Println(...interface{})
+	Print(int, ...interface{})
+	Printf(int, string, ...interface{})
+	Println(int, ...interface{})
 
-	Fatal(...interface{})
-	Fatalf(string, ...interface{})
-	Fatalln(...interface{})
+	Fatal(int, ...interface{})
+	Fatalf(int, string, ...interface{})
+	Fatalln(int, ...interface{})
 
-	Panic(...interface{})
-	Panicf(string, ...interface{})
-	Panicln(...interface{})
+	Panic(int, ...interface{})
+	Panicf(int, string, ...interface{})
+	Panicln(int, ...interface{})
 }
 
 // The FieldLogger interface generalizes the Entry and Logger types
@@ -114,30 +114,30 @@ type FieldLogger interface {
 	WithFields(fields Fields) *Entry
 	WithError(err error) *Entry
 
-	Debugf(format string, args ...interface{})
-	Infof(format string, args ...interface{})
-	Printf(format string, args ...interface{})
-	Warnf(format string, args ...interface{})
-	Warningf(format string, args ...interface{})
-	Errorf(format string, args ...interface{})
-	Fatalf(format string, args ...interface{})
-	Panicf(format string, args ...interface{})
+	Debugf(int, format string, args ...interface{})
+	Infof(int, format string, args ...interface{})
+	Printf(int, format string, args ...interface{})
+	Warnf(int, format string, args ...interface{})
+	Warningf(int, format string, args ...interface{})
+	Errorf(int, format string, args ...interface{})
+	Fatalf(int, format string, args ...interface{})
+	Panicf(int, format string, args ...interface{})
 
-	Debug(args ...interface{})
-	Info(args ...interface{})
-	Print(args ...interface{})
-	Warn(args ...interface{})
-	Warning(args ...interface{})
-	Error(args ...interface{})
-	Fatal(args ...interface{})
-	Panic(args ...interface{})
+	Debug(skip int, args ...interface{})
+	Info(skip int, args ...interface{})
+	Print(skip int, args ...interface{})
+	Warn(skip int, args ...interface{})
+	Warning(skip int, args ...interface{})
+	Error(skip int, args ...interface{})
+	Fatal(skip int, args ...interface{})
+	Panic(skip int, args ...interface{})
 
-	Debugln(args ...interface{})
-	Infoln(args ...interface{})
-	Println(args ...interface{})
-	Warnln(args ...interface{})
-	Warningln(args ...interface{})
-	Errorln(args ...interface{})
-	Fatalln(args ...interface{})
-	Panicln(args ...interface{})
+	Debugln(skip int, args ...interface{})
+	Infoln(skip int, args ...interface{})
+	Println(skip int, args ...interface{})
+	Warnln(skip int, args ...interface{})
+	Warningln(skip int, args ...interface{})
+	Errorln(skip int, args ...interface{})
+	Fatalln(skip int, args ...interface{})
+	Panicln(skip int, args ...interface{})
 }
