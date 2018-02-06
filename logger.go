@@ -112,191 +112,191 @@ func (logger *Logger) WithError(err error) *Entry {
 	return entry.WithError(err)
 }
 
-func (logger *Logger) Debugf(format string, args ...interface{}) {
+func (logger *Logger) Debugf(skip int, format string, args ...interface{}) {
 	if logger.level() >= DebugLevel {
 		entry := logger.newEntry()
-		entry.Debugf(format, args...)
+		entry.Debugf(skip+1, format, args...)
 		logger.releaseEntry(entry)
 	}
 }
 
-func (logger *Logger) Infof(format string, args ...interface{}) {
+func (logger *Logger) Infof(skip int,format string, args ...interface{}) {
 	if logger.level() >= InfoLevel {
 		entry := logger.newEntry()
-		entry.Infof(format, args...)
+		entry.Infof(skip+1, format, args...)
 		logger.releaseEntry(entry)
 	}
 }
 
-func (logger *Logger) Printf(format string, args ...interface{}) {
+func (logger *Logger) Printf(skip int,format string, args ...interface{}) {
 	entry := logger.newEntry()
-	entry.Printf(format, args...)
+	entry.Printf(skip+1, format, args...)
 	logger.releaseEntry(entry)
 }
 
-func (logger *Logger) Warnf(format string, args ...interface{}) {
+func (logger *Logger) Warnf(skip int,format string, args ...interface{}) {
 	if logger.level() >= WarnLevel {
 		entry := logger.newEntry()
-		entry.Warnf(format, args...)
+		entry.Warnf(skip+1, format, args...)
 		logger.releaseEntry(entry)
 	}
 }
 
-func (logger *Logger) Warningf(format string, args ...interface{}) {
+func (logger *Logger) Warningf(skip int,format string, args ...interface{}) {
 	if logger.level() >= WarnLevel {
 		entry := logger.newEntry()
-		entry.Warnf(format, args...)
+		entry.Warnf(skip+1, format, args...)
 		logger.releaseEntry(entry)
 	}
 }
 
-func (logger *Logger) Errorf(format string, args ...interface{}) {
+func (logger *Logger) Errorf(skip int,format string, args ...interface{}) {
 	if logger.level() >= ErrorLevel {
 		entry := logger.newEntry()
-		entry.Errorf(format, args...)
+		entry.Errorf(skip+1, format, args...)
 		logger.releaseEntry(entry)
 	}
 }
 
-func (logger *Logger) Fatalf(format string, args ...interface{}) {
+func (logger *Logger) Fatalf(skip int,format string, args ...interface{}) {
 	if logger.level() >= FatalLevel {
 		entry := logger.newEntry()
-		entry.Fatalf(format, args...)
+		entry.Fatalf(skip+1, format, args...)
 		logger.releaseEntry(entry)
 	}
 	Exit(1)
 }
 
-func (logger *Logger) Panicf(format string, args ...interface{}) {
+func (logger *Logger) Panicf(skip int,format string, args ...interface{}) {
 	if logger.level() >= PanicLevel {
 		entry := logger.newEntry()
-		entry.Panicf(format, args...)
+		entry.Panicf(skip+1, format, args...)
 		logger.releaseEntry(entry)
 	}
 }
 
-func (logger *Logger) Debug(args ...interface{}) {
+func (logger *Logger) Debug(skip int,args ...interface{}) {
 	if logger.level() >= DebugLevel {
 		entry := logger.newEntry()
-		entry.Debug(args...)
+		entry.Debug(skip+1, args...)
 		logger.releaseEntry(entry)
 	}
 }
 
-func (logger *Logger) Info(args ...interface{}) {
+func (logger *Logger) Info(skip int,args ...interface{}) {
 	if logger.level() >= InfoLevel {
 		entry := logger.newEntry()
-		entry.Info(args...)
+		entry.Info(skip+1, args...)
 		logger.releaseEntry(entry)
 	}
 }
 
-func (logger *Logger) Print(args ...interface{}) {
+func (logger *Logger) Print(skip int,args ...interface{}) {
 	entry := logger.newEntry()
-	entry.Info(args...)
+	entry.Info(skip+1, args...)
 	logger.releaseEntry(entry)
 }
 
-func (logger *Logger) Warn(args ...interface{}) {
+func (logger *Logger) Warn(skip int,args ...interface{}) {
 	if logger.level() >= WarnLevel {
 		entry := logger.newEntry()
-		entry.Warn(args...)
+		entry.Warn(skip+1, args...)
 		logger.releaseEntry(entry)
 	}
 }
 
-func (logger *Logger) Warning(args ...interface{}) {
+func (logger *Logger) Warning(skip int,args ...interface{}) {
 	if logger.level() >= WarnLevel {
 		entry := logger.newEntry()
-		entry.Warn(args...)
+		entry.Warn(skip+1, args...)
 		logger.releaseEntry(entry)
 	}
 }
 
-func (logger *Logger) Error(args ...interface{}) {
+func (logger *Logger) Error(skip int,args ...interface{}) {
 	if logger.level() >= ErrorLevel {
 		entry := logger.newEntry()
-		entry.Error(args...)
+		entry.Error(skip+1, args...)
 		logger.releaseEntry(entry)
 	}
 }
 
-func (logger *Logger) Fatal(args ...interface{}) {
+func (logger *Logger) Fatal(skip int,args ...interface{}) {
 	if logger.level() >= FatalLevel {
 		entry := logger.newEntry()
-		entry.Fatal(args...)
+		entry.Fatal(skip+1, args...)
 		logger.releaseEntry(entry)
 	}
 	Exit(1)
 }
 
-func (logger *Logger) Panic(args ...interface{}) {
+func (logger *Logger) Panic(skip int,args ...interface{}) {
 	if logger.level() >= PanicLevel {
 		entry := logger.newEntry()
-		entry.Panic(args...)
+		entry.Panic(skip+1, args...)
 		logger.releaseEntry(entry)
 	}
 }
 
-func (logger *Logger) Debugln(args ...interface{}) {
+func (logger *Logger) Debugln(skip int,args ...interface{}) {
 	if logger.level() >= DebugLevel {
 		entry := logger.newEntry()
-		entry.Debugln(args...)
+		entry.Debugln(skip+1, args...)
 		logger.releaseEntry(entry)
 	}
 }
 
-func (logger *Logger) Infoln(args ...interface{}) {
+func (logger *Logger) Infoln(skip int,args ...interface{}) {
 	if logger.level() >= InfoLevel {
 		entry := logger.newEntry()
-		entry.Infoln(args...)
+		entry.Infoln(skip+1, args...)
 		logger.releaseEntry(entry)
 	}
 }
 
-func (logger *Logger) Println(args ...interface{}) {
+func (logger *Logger) Println(skip int,args ...interface{}) {
 	entry := logger.newEntry()
-	entry.Println(args...)
+	entry.Println(skip+1, args...)
 	logger.releaseEntry(entry)
 }
 
-func (logger *Logger) Warnln(args ...interface{}) {
+func (logger *Logger) Warnln(skip int,args ...interface{}) {
 	if logger.level() >= WarnLevel {
 		entry := logger.newEntry()
-		entry.Warnln(args...)
+		entry.Warnln(skip+1, args...)
 		logger.releaseEntry(entry)
 	}
 }
 
-func (logger *Logger) Warningln(args ...interface{}) {
+func (logger *Logger) Warningln(skip int,args ...interface{}) {
 	if logger.level() >= WarnLevel {
 		entry := logger.newEntry()
-		entry.Warnln(args...)
+		entry.Warnln(skip+1, args...)
 		logger.releaseEntry(entry)
 	}
 }
 
-func (logger *Logger) Errorln(args ...interface{}) {
+func (logger *Logger) Errorln(skip int,args ...interface{}) {
 	if logger.level() >= ErrorLevel {
 		entry := logger.newEntry()
-		entry.Errorln(args...)
+		entry.Errorln(skip+1, args...)
 		logger.releaseEntry(entry)
 	}
 }
 
-func (logger *Logger) Fatalln(args ...interface{}) {
+func (logger *Logger) Fatalln(skip int,args ...interface{}) {
 	if logger.level() >= FatalLevel {
 		entry := logger.newEntry()
-		entry.Fatalln(args...)
+		entry.Fatalln(skip+1, args...)
 		logger.releaseEntry(entry)
 	}
 	Exit(1)
 }
 
-func (logger *Logger) Panicln(args ...interface{}) {
+func (logger *Logger) Panicln(skip int,args ...interface{}) {
 	if logger.level() >= PanicLevel {
 		entry := logger.newEntry()
-		entry.Panicln(args...)
+		entry.Panicln(skip+1, args...)
 		logger.releaseEntry(entry)
 	}
 }
