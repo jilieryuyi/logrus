@@ -85,27 +85,27 @@ const (
 )
 
 // Won't compile if StdLogger can't be realized by a log.Logger
-var (
-	//_ StdLogger = &log.Logger{}
-	_ StdLogger = &Entry{}
-	_ StdLogger = &Logger{}
-)
+//var (
+//	_ StdLogger = &log.Logger{}
+//	_ StdLogger = &Entry{}
+//	_ StdLogger = &Logger{}
+//)
 
 // StdLogger is what your logrus-enabled library should take, that way
 // it'll accept a stdlib logger and a logrus logger. There's no standard
 // interface, this is the closest we get, unfortunately.
 type StdLogger interface {
-	Print(int, ...interface{})
-	Printf(int, string, ...interface{})
-	Println(int, ...interface{})
+	Print(...interface{})
+	Printf(string, ...interface{})
+	Println(...interface{})
 
-	Fatal(int,...interface{})
-	Fatalf(int,string, ...interface{})
-	Fatalln(int,...interface{})
+	Fatal(...interface{})
+	Fatalf(string, ...interface{})
+	Fatalln(...interface{})
 
-	Panic(int,...interface{})
-	Panicf(int,string, ...interface{})
-	Panicln(int,...interface{})
+	Panic(...interface{})
+	Panicf(string, ...interface{})
+	Panicln(...interface{})
 }
 
 // The FieldLogger interface generalizes the Entry and Logger types
