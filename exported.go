@@ -75,120 +75,120 @@ func WithFields(fields Fields) *Entry {
 
 // Debug logs a message at level Debug on the standard logger.
 func Debug(args ...interface{}) {
-	std.Debug(skip, args...)
+	std.Debug(skip+1, args...)
 }
 
 // Print logs a message at level Info on the standard logger.
 func Print(args ...interface{}) {
-	std.Print(skip, args...)
+	std.Print(skip+1, args...)
 }
 
 // Info logs a message at level Info on the standard logger.
 func Info(args ...interface{}) {
-	std.Info(skip, args...)
+	std.Info(skip+1, args...)
 }
 
 // Warn logs a message at level Warn on the standard logger.
 func Warn(args ...interface{}) {
-	std.Warn(skip, args...)
+	std.Warn(skip+1, args...)
 }
 
 // Warning logs a message at level Warn on the standard logger.
 func Warning(args ...interface{}) {
-	std.Warning(skip, args...)
+	std.Warning(skip+1, args...)
 }
 
 // Error logs a message at level Error on the standard logger.
 func Error(args ...interface{}) {
-	std.Error(skip, args...)
+	std.Error(skip+1, args...)
 }
 
 // Panic logs a message at level Panic on the standard logger.
 func Panic(args ...interface{}) {
-	std.Panic(skip, args...)
+	std.Panic(skip+1, args...)
 }
 
 // Fatal logs a message at level Fatal on the standard logger.
 func Fatal(args ...interface{}) {
-	std.Fatal(skip, args...)
+	std.Fatal(skip+1, args...)
 }
 
 // Debugf logs a message at level Debug on the standard logger.
 func Debugf(format string, args ...interface{}) {
-	std.Debugf(skip, format, args...)
+	std.Debugf(skip+1, format, args...)
 }
 
 // Printf logs a message at level Info on the standard logger.
 func Printf(format string, args ...interface{}) {
-	std.Printf(skip, format, args...)
+	std.Printf(skip+1, format, args...)
 }
 
 // Infof logs a message at level Info on the standard logger.
 func Infof(format string, args ...interface{}) {
-	std.Infof(skip, format, args...)
+	std.Infof(skip+1, format, args...)
 }
 
 // Warnf logs a message at level Warn on the standard logger.
 func Warnf(format string, args ...interface{}) {
-	std.Warnf(skip, format, args...)
+	std.Warnf(skip+1, format, args...)
 }
 
 // Warningf logs a message at level Warn on the standard logger.
 func Warningf(format string, args ...interface{}) {
-	std.Warningf(skip, format, args...)
+	std.Warningf(skip+1, format, args...)
 }
 
 // Errorf logs a message at level Error on the standard logger.
 func Errorf(format string, args ...interface{}) {
-	std.Errorf(skip, format, args...)
+	std.Errorf(skip+1, format, args...)
 }
 
 // Panicf logs a message at level Panic on the standard logger.
 func Panicf(format string, args ...interface{}) {
-	std.Panicf(skip, format, args...)
+	std.Panicf(skip+1, format, args...)
 }
 
 // Fatalf logs a message at level Fatal on the standard logger.
 func Fatalf(format string, args ...interface{}) {
-	std.Fatalf(skip, format, args...)
+	std.Fatalf(skip+1, format, args...)
 }
 
 // Debugln logs a message at level Debug on the standard logger.
 func Debugln(args ...interface{}) {
-	std.Debugln(skip, args...)
+	std.Debugln(skip+1, args...)
 }
 
 // Println logs a message at level Info on the standard logger.
 func Println(args ...interface{}) {
-	std.Println(skip, args...)
+	std.Println(skip+1, args...)
 }
 
 // Infoln logs a message at level Info on the standard logger.
 func Infoln(args ...interface{}) {
-	std.Infoln(skip, args...)
+	std.Infoln(skip+1, args...)
 }
 
 // Warnln logs a message at level Warn on the standard logger.
 func Warnln(args ...interface{}) {
-	std.Warnln(skip, args...)
+	std.Warnln(skip+1, args...)
 }
 
 // Warningln logs a message at level Warn on the standard logger.
 func Warningln(args ...interface{}) {
-	std.Warningln(skip, args...)
+	std.Warningln(skip+1, args...)
 }
 
 // Errorln logs a message at level Error on the standard logger.
 func Errorln(args ...interface{}) {
-	std.Errorln(skip, args...)
+	std.Errorln(skip+1, args...)
 }
 
 // Panicln logs a message at level Panic on the standard logger.
 func Panicln(args ...interface{}) {
-	std.Panicln(skip, args...)
+	std.Panicln(skip+1, args...)
 }
 
 // Fatalln logs a message at level Fatal on the standard logger.
 func Fatalln(args ...interface{}) {
-	std.Fatalln(skip, args...)
+	std.Fatalln(skip+1, args...)
 }
