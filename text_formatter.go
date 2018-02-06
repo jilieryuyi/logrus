@@ -136,7 +136,7 @@ func (f *TextFormatter) printColored(b *bytes.Buffer, entry *Entry, keys []strin
 		fmt.Fprintf(b, "\x1b[%dm%s\x1b[0m[%s] %-44s ", levelColor, levelText, entry.Time.Format(timestampFormat), entry.Message)
 	}
 
-	fmt.Fprintf(b,"[%s:%d] ", entry.ShortPath, entry.Level)
+	fmt.Fprintf(b,"[%s:%d] ", entry.ShortPath, entry.Line)
 
 	for _, k := range keys {
 		v := entry.Data[k]

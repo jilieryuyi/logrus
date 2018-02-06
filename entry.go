@@ -75,7 +75,6 @@ func NewEntry(logger *Logger) *Entry {
 
 func (entry *Entry) initCallInfo() {
 	pc, fp, ln, ok := runtime.Caller(6)
-	fmt.Printf("====>%v,%v,%v,%v,<====",pc, fp, ln, ok)
 	if !ok {
 		fmt.Println("error: error during runtime.Caller")
 		return
