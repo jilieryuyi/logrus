@@ -6,15 +6,23 @@ import (
 	"os"
 	"sync"
 	"time"
+	"strings"
+	"runtime"
+	"path/filepath"
 )
 
 var bufferPool *sync.Pool
+var workingDir = "/"
 
 func init() {
 	bufferPool = &sync.Pool{
 		New: func() interface{} {
 			return new(bytes.Buffer)
 		},
+	}
+	wd, err := os.Getwd()
+	if err == nil {
+		workingDir = filepath.ToSlash(wd) + "/"
 	}
 }
 
@@ -43,6 +51,18 @@ type Entry struct {
 
 	// When formatter is called in entry.log(), an Buffer may be set to entry
 	Buffer *bytes.Buffer
+
+	// call line
+	Line int
+
+	// call form file full path
+	FullPath string
+
+	// call form file short path
+	ShortPath string
+
+	// call form func
+	FuncName string
 }
 
 func NewEntry(logger *Logger) *Entry {
@@ -50,6 +70,25 @@ func NewEntry(logger *Logger) *Entry {
 		Logger: logger,
 		// Default is three fields, give a little extra room
 		Data: make(Fields, 5),
+	}
+}
+
+func (entry *Entry) initCallInfo() {
+	pc, fp, ln, ok := runtime.Caller(6)
+	if !ok {
+		fmt.Println("error: error during runtime.Caller")
+		return
+	}
+	entry.Line = ln
+	entry.FullPath = fp
+	if strings.HasPrefix(fp, workingDir) {
+		entry.ShortPath = fp[len(workingDir):]
+	} else {
+		entry.ShortPath = fp
+	}
+	entry.FuncName = runtime.FuncForPC(pc).Name()
+	if strings.HasPrefix(entry.FuncName, workingDir) {
+		entry.FuncName = entry.FuncName[len(workingDir):]
 	}
 }
 
@@ -89,6 +128,8 @@ func (entry *Entry) WithFields(fields Fields) *Entry {
 // This function is not declared with a pointer value because otherwise
 // race conditions will occur when using multiple goroutines
 func (entry Entry) log(level Level, msg string) {
+	entry.initCallInfo()
+
 	var buffer *bytes.Buffer
 	entry.Time = time.Now()
 	entry.Level = level

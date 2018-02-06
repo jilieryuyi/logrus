@@ -99,6 +99,8 @@ func (f *TextFormatter) Format(entry *Entry) ([]byte, error) {
 			f.appendKeyValue(b, "time", entry.Time.Format(timestampFormat))
 		}
 		f.appendKeyValue(b, "level", entry.Level.String())
+		f.appendKeyValue(b, "file", entry.ShortPath)
+		f.appendKeyValue(b, "line", entry.Line)
 		if entry.Message != "" {
 			f.appendKeyValue(b, "msg", entry.Message)
 		}
@@ -133,6 +135,9 @@ func (f *TextFormatter) printColored(b *bytes.Buffer, entry *Entry, keys []strin
 	} else {
 		fmt.Fprintf(b, "\x1b[%dm%s\x1b[0m[%s] %-44s ", levelColor, levelText, entry.Time.Format(timestampFormat), entry.Message)
 	}
+
+	fmt.Fprintf(b,"[%s:%d] ", entry.ShortPath, entry.Level)
+
 	for _, k := range keys {
 		v := entry.Data[k]
 		fmt.Fprintf(b, " \x1b[%dm%s\x1b[0m=", levelColor, k)
