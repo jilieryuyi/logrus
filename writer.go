@@ -21,7 +21,7 @@ func (entry *Entry) Writer() *io.PipeWriter {
 func (entry *Entry) WriterLevel(level Level) *io.PipeWriter {
 	reader, writer := io.Pipe()
 
-	var printFunc func(args ...interface{})
+	var printFunc func(skip int, args ...interface{})
 
 	switch level {
 	case DebugLevel:
@@ -40,19 +40,19 @@ func (entry *Entry) WriterLevel(level Level) *io.PipeWriter {
 		printFunc = entry.Print
 	}
 
-	go entry.writerScanner(reader, printFunc)
+	go entry.writerScanner(skip, reader, printFunc)
 	runtime.SetFinalizer(writer, writerFinalizer)
 
 	return writer
 }
 
-func (entry *Entry) writerScanner(reader *io.PipeReader, printFunc func(args ...interface{})) {
+func (entry *Entry) writerScanner(skip int, reader *io.PipeReader, printFunc func(skip int, args ...interface{})) {
 	scanner := bufio.NewScanner(reader)
 	for scanner.Scan() {
-		printFunc(scanner.Text())
+		printFunc(skip, scanner.Text())
 	}
 	if err := scanner.Err(); err != nil {
-		entry.Errorf("Error while reading from Writer: %s", err)
+		entry.Errorf(skip,"Error while reading from Writer: %s", err)
 	}
 	reader.Close()
 }
